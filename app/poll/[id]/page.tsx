@@ -32,11 +32,13 @@ export default async function PollPage({ params }: { params: { id: string } }) {
             <VotingForm poll={poll} />
           </div>
 
-          {/* Results Section - Now Centered */}
-          <div className="flex flex-col items-center">
-            <h3 className="text-lg font-medium mb-4">Results</h3>
-            <div className="w-full max-w-lg"> {/* Adjust width as needed */}
-              <PollResults poll={poll} />
+          {/* Results Section - Guaranteed Centering */}
+          <div className="flex justify-center">
+            <div className="w-full max-w-[500px]"> {/* Adjust max-width as needed */}
+              <h3 className="text-lg font-medium mb-4 text-center">Results</h3>
+              <div className="flex justify-center">
+                <PollResults poll={poll} />
+              </div>
             </div>
           </div>
 
