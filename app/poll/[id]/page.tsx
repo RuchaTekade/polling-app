@@ -15,6 +15,7 @@ export default async function PollPage({ params }: { params: { id: string } }) {
 
   return (
     <div className="container py-8 max-w-4xl">
+     <div className="w-full max-w-3xl mx-auto">
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl">{poll.title}</CardTitle>
@@ -41,6 +42,7 @@ export default async function PollPage({ params }: { params: { id: string } }) {
           </div>
         </CardContent>
       </Card>
+    </div>
     </div>
   )
 }
