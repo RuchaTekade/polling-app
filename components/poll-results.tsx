@@ -1,19 +1,19 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts"
-import type { PollWithOptions } from "@/app/actions"
-import { ChartContainer, ChartTooltipContent } from "@/components/ui/chart"
+import { motion } from "framer-motion";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
+import type { PollWithOptions } from "@/app/actions";
+import { ChartContainer, ChartTooltipContent } from "@/components/ui/chart";
 
 type PollResultsProps = {
-  poll: PollWithOptions
-}
+  poll: PollWithOptions;
+};
 
 export function PollResults({ poll }: PollResultsProps) {
   const chartData = poll.options.map((option) => ({
     name: option.option_text,
     value: option.votes_count,
-  }))
+  }));
 
   const COLORS = [
     "hsl(var(--chart-1))",
@@ -24,13 +24,13 @@ export function PollResults({ poll }: PollResultsProps) {
     "hsl(var(--chart-6))",
     "hsl(var(--chart-7))",
     "hsl(var(--chart-8))",
-  ]
+  ];
 
-  const hasVotes = poll.total_votes > 0
+  const hasVotes = poll.total_votes > 0;
 
   return (
-    <div className="space-y-4">
-      <div className="h-64">
+    <div className="space-y-4 w-full">
+      <div className="h-64 w-full">
         {hasVotes ? (
           <ChartContainer
             config={poll.options.reduce(
@@ -38,8 +38,8 @@ export function PollResults({ poll }: PollResultsProps) {
                 acc[`option-${index}`] = {
                   label: option.option_text,
                   color: COLORS[index % COLORS.length],
-                }
-                return acc
+                };
+                return acc;
               },
               {} as Record<string, { label: string; color: string }>,
             )}
@@ -72,12 +72,12 @@ export function PollResults({ poll }: PollResultsProps) {
         )}
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-2 w-full">
         {poll.options.map((option, index) => {
-          const percentage = hasVotes ? Math.round((option.votes_count / poll.total_votes) * 100) : 0
+          const percentage = hasVotes ? Math.round((option.votes_count / poll.total_votes) * 100) : 0;
 
           return (
-            <div key={option.id} className="space-y-1">
+            <div key={option.id} className="space-y-1 w-full">
               <div className="flex justify-between text-sm">
                 <span>{option.option_text}</span>
                 <span>
@@ -85,7 +85,7 @@ export function PollResults({ poll }: PollResultsProps) {
                 </span>
               </div>
               <motion.div
-                className="h-2 rounded-full bg-muted overflow-hidden"
+                className="h-2 rounded-full bg-muted overflow-hidden w-full"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 + index * 0.1 }}
@@ -99,11 +99,11 @@ export function PollResults({ poll }: PollResultsProps) {
                 />
               </motion.div>
             </div>
-          )
+          );
         })}
 
         <div className="text-sm text-muted-foreground text-right pt-2">Total votes: {poll.total_votes}</div>
       </div>
     </div>
-  )
+  );
 }
