@@ -24,25 +24,18 @@ export default async function PollPage({ params }: { params: { id: string } }) {
             {poll.expires_at && ` • Expires ${formatDate(poll.expires_at)}`}
           </div>
         </CardHeader>
-        
-        <CardContent className="space-y-8">
-          {/* Voting Section */}
-          <div>
-            <h3 className="text-lg font-medium mb-4">Cast Your Vote</h3>
-            <VotingForm poll={poll} />
-          </div>
-
-          {/* Results Section - Guaranteed Centering */}
-          <div className="flex justify-center">
-            <div className="w-full max-w-[500px]"> {/* Adjust max-width as needed */}
-              <h3 className="text-lg font-medium mb-4 text-center">Results</h3>
-              <div className="flex justify-center">
-                <PollResults poll={poll} />
-              </div>
+        <CardContent className="space-y-6">
+          <div className="grid gap-8 md:grid-cols-2">
+            <div>
+              <h3 className="text-lg font-medium mb-4">Cast Your Vote</h3>
+              <VotingForm poll={poll} />
+            </div>
+            <div>
+              <h3 className="text-lg font-medium mb-4">Results</h3>
+              <PollResults poll={poll} />
             </div>
           </div>
 
-          {/* Share Section */}
           <div className="pt-4 border-t">
             <SharePoll pollId={poll.id} />
           </div>
